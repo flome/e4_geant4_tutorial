@@ -27,7 +27,7 @@ file(GLOB libs ${PROJECT_SOURCE_DIR}/lib/*)
 # link against libraries
 target_link_libraries(aFirstGeant4App ${Geant4_LIBRARIES} ${libs} stdc++fs )
 # copy the init_vis macro to the build directory
-set(SIM_SCRIPTS macros/init_vis.mac)
+set(SIM_SCRIPTS macros/init.mac)
 
 foreach(_script ${SIM_SCRIPTS})
   configure_file(

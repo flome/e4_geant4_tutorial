@@ -50,7 +50,7 @@ int main(int argc, char** argv){
     G4UIExecutive* ui = new G4UIExecutive(argc, argv);
 
     // initialize the view itself via macro
-    fileName = "macros/init_vis.mac";
+    fileName = "macros/init.mac";
     G4UImanager::GetUIpointer()->ApplyCommand(command+fileName);
 
     ui->SessionStart();
