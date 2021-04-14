@@ -1,0 +1,8 @@
+
+# default: point source, put in here more commands to change that
+/gps/particle proton
+/gps/pos/centre 0.0 0.0 -50 cm
+/gps/direction 0 0 1
+/gps/energy 200 MeV
+
+/run/beamOn 1

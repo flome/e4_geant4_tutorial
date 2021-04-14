@@ -4,5 +4,5 @@
 
 G4History.macro
 aFirstGeant4App
-macros
+./macros
 
