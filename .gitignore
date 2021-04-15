@@ -3,5 +3,5 @@
 
 
 G4History.macro
-macros
-!*/macros
+.ipy*
+*.csv
