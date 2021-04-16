@@ -7,6 +7,9 @@ results: $(foreach energy,$(ENERGIES), output/run_$(energy)_$(UNIT).csv)
 output/run_%_$(UNIT).csv: macros/run_%_$(UNIT).mac output ./aFirstGeant4App
 	./aFirstGeant4App $<
 
+aFirstGeant4App: aFirstGeant4App_code/build/aFirstGeant4App
+	cd aFirstGeant4App_code; make; cp -r aFirstGeant4App macros ..;
+
 output:
 	mkdir output
 
