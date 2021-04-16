@@ -1,8 +1,11 @@
 
-build/aFirstGeant4App: $(BASE)/src/* $(BASE)/include/* build/Makefile
+aFirstGeant4App: build/aFirstGeant4App
+	cp build/aFirstGeant4App .
+
+build/aFirstGeant4App: src/* include/* build/Makefile
 	cd build; make
 
-build/Makefile: $(BASE)/CMakeLists.txt build
+build/Makefile: CMakeLists.txt build
 	cd build ; cmake ..
 
 build:

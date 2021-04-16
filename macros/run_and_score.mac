@@ -1,8 +1,3 @@
-/run/initialize
-
-####################################
-#### primary source setup
-####################################
 
 # default: point source, put in here more commands to change that
 /gps/particle proton
@@ -10,8 +5,9 @@
 /gps/direction 0 0 1
 /gps/energy 200 MeV
 
+
 ####################################
-#### scorer setup
+#### scorer setup source
 ####################################
 
 ## create a simple voxel scorer that has the same size as the target block
@@ -21,16 +17,17 @@
 # a weird Geant4 thing at the beginning: use half sizes!
 /score/mesh/boxSize 15 15 15 cm
 
-# 30cm box size, 30 bins --> 1 cm resolution
-/score/mesh/nBin 30 30 30
+# 10cm box size, 100 bins --> 1 mm resolution
+/score/mesh/nBin 150 150 150
 /score/quantity/energyDeposit myEdepScorer
 /score/close
+
 
 ####################################
 #### run and save
 ####################################
 
-/run/beamOn 5000
+/run/beamOn 500
 
 # save to file
 /score/dumpQuantityToFile myMesh myEdepScorer results.csv
