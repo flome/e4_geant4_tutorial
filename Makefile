@@ -1,26 +1,16 @@
-BASE  = aFirstGeant4App_code
-BUILD = $(BASE)/build
 
+ENERGIES := 100 200 300 400 500
+UNIT := MeV
 
-aFirstGeant4App: $(BUILD)/aFirstGeant4App macros
-	cp $(BUILD)/aFirstGeant4App .
+results: $(foreach energy,$(ENERGIES), output/run_$(energy)_$(UNIT).csv)
 
-run: aFirstGeant4App
-		./aFirstGeant4App
+output/run_%_$(UNIT).csv: macros/run_%_$(UNIT).mac output ./aFirstGeant4App
+	./aFirstGeant4App $<
 
-macros: $(BASE)/macros/*.mac
-	cp -r $(BASE)/macros .
+output:
+	mkdir output
 
-$(BUILD)/aFirstGeant4App: $(BASE)/src/* $(BASE)/include/* $(BUILD)/Makefile
-	cd $(BUILD); make
+macros/run_%_$(UNIT).mac: macros/placeholder.mac
+	sed "s|ENERGY|$* $(UNIT)|g; s|FILENAME|$*_$(UNIT)|g;" $< > $@
 
-$(BUILD)/Makefile: $(BASE)/CMakeLists.txt $(BUILD)
-	cd $(BUILD) ; cmake ..
-
-$(BUILD):
-	mkdir $(BUILD)
-
-clean:
-	rm -fr $(BUILD) macros ./aFirstGeant4App ./G4History.macro
-
-.PHONY: clean run 
+.PHONY: results
